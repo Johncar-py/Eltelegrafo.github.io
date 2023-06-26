@@ -1,0 +1,168 @@
+
+// ===== Variables ===== //
+
+// Fonts stuff
+$six-caps: 'Six Caps', sans-serif;
+$merriweather: 'Roboto', sans-serif;
+
+$ff-base: $merriweather;
+$ff-alt: $six-caps;
+
+$fs-base: 1rem;
+$fs-h1: 3.75rem;
+$fs-h2: 2.875rem;
+$fs-h3: 2.25rem;
+$fs-xl: 6rem;
+
+// Colours
+$black: #252525;
+$yellow: #e9d20f;
+$blue: #0780fe;
+$light-gray: #c2c2c2;
+$dark-gray: #e8e8e8;
+$white: #fff;
+
+
+// ===== Mixins ===== //
+
+@mixin font-base($font-size: $fs-base, $font-weight: 300, $color: $black) {
+  font: {
+    family: $ff-base;
+    size: $font-size;
+    weight: $font-weight;
+  }
+  color: $color;
+} 
+
+@mixin font-alt($font-size: $fs-base, $color: $black) {
+  font: {
+    family: $ff-alt;
+    size: $font-size;
+  }
+  color: $color;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+}
+
+
+// ===== Styles ===== //
+
+body {
+  @include font-base;
+  line-height: 1.6;
+  background: #E9ECF4;
+  display: grid;
+  grid-template: 
+    "header header header header" 11em
+    "menu menu menu menu" 5vh
+    ". main sidebar ." auto
+    "footer footer footer footer" 10em 
+    / 1fr minmax(30em, 5fr) minmax(15em, 2fr) 1fr;
+  grid-column-gap: 1.5em;
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header,
+footer {
+  color: $yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title,
+.footer-title {
+  @include font-alt($color: $yellow, $font-size: $fs-h2 );
+}
+
+.menu {
+  grid-area: menu;
+  background-color: #0780fe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ .menu ul{
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .menu li a{
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    display: block;
+}
+
+main {
+  grid-area: main;
+  padding-top: 20px;
+}
+
+aside {
+  grid-area: sidebar;
+  background: $dark-gray;
+  padding: 2em;
+  margin-top: 20px;
+}
+
+footer {
+  grid-area: footer;
+  background: url(../Recursos/background.jpg);
+}
+
+
+// Cards
+
+.card {
+  display: grid;
+  grid-template:
+    "img title" min-content
+    "img content" auto / 1fr 3fr;
+  grid-column-gap: 1.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.card-img {
+  grid-area: img;
+  max-width: 100%;
+}
+
+.card-title {
+  grid-area: title;
+  margin: 0;
+  font-weight: 300;
+}
+
+.card-content {
+  grid-area: content;
+  
+  a {
+    color: $blue;
+    font-size: 1.1em;
+  }
+}
+
+//Aside
+
+aside li a{
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+aside li a:hover{
+  text-decoration: underline;
+}
